@@ -1,0 +1,69 @@
+.add-counter-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-inline: 0.5rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+input {
+  all: unset;
+  text-align: center;
+  border: solid black 1px;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+}
+
+button {
+  all: unset;
+  color: white;
+  border-radius: 0.5rem;
+  background-color: #001e1e;
+  padding: 0.5rem;
+}
+
+.inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.counters {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.counter input {
+  width: 5rem;
+}
+
+.counter h2 {
+  margin: 0;
+  padding-top: 1.2rem;
+}
+
+.counter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.advance-btn {
+  margin-left: auto;
+  margin-right: auto;
+}
