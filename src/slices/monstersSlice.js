@@ -82,8 +82,36 @@ export const passDoom = createAsyncThunk(
   }
 );
 
+export const failDoom = createAsyncThunk(
+  "monsters/failDoom",
+  async (monster) => {
+    try {
+      const res = await axios.patch(`/update/${monster._id}`, {
+        doom: true,
+      });
+      return res.data;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+);
+
 export const passAbyssal = createAsyncThunk(
   "monsters/passAbyssal",
+  async (monster) => {
+    try {
+      const res = await axios.patch(`/update/${monster._id}`, {
+        abyssal_mal: true,
+      });
+      return res.data;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+);
+
+export const failAbyssal = createAsyncThunk(
+  "monsters/failAbyssal",
   async (monster) => {
     try {
       const res = await axios.patch(`/update/${monster._id}`, {
@@ -185,6 +213,22 @@ export const monstersSlice = createSlice({
         ];
       })
       .addCase(passAbyssal.fulfilled, (state, action) => {
+        state.monsters = [
+          action.payload,
+          ...state.monsters.filter((monster) => {
+            return monster._id !== action.payload._id;
+          }),
+        ];
+      })
+      .addCase(failDoom.fulfilled, (state, action) => {
+        state.monsters = [
+          action.payload,
+          ...state.monsters.filter((monster) => {
+            return monster._id !== action.payload._id;
+          }),
+        ];
+      })
+      .addCase(failAbyssal.fulfilled, (state, action) => {
         state.monsters = [
           action.payload,
           ...state.monsters.filter((monster) => {

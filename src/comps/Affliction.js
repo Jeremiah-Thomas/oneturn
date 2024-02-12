@@ -2,7 +2,12 @@ import React from "react";
 import { ReactComponent as Check } from "../circle-check.svg";
 import { ReactComponent as X } from "../circle-xmark.svg";
 import { useDispatch } from "react-redux";
-import { passDoom, passAbyssal } from "../slices/monstersSlice";
+import {
+  passDoom,
+  passAbyssal,
+  failDoom,
+  failAbyssal,
+} from "../slices/monstersSlice";
 import { styled } from "styled-components";
 
 const Afflic = styled.div`
@@ -36,11 +41,21 @@ const Affliction = (props) => {
     dispatch(passAbyssal(props.monster));
   };
 
+  const onFailDoom = (e) => {
+    e.preventDefault();
+    dispatch(failDoom(props.monster));
+  };
+
+  const onFailAbyssal = (e) => {
+    e.preventDefault();
+    dispatch(failAbyssal(props.monster));
+  };
+
   return (
     <Afflic color={affliction.color}>
       {affliction.name ? (
         <>
-          <h3 className="name">{affliction.name}</h3>
+          <h4 className="name">{affliction.name}</h4>
           {affliction.duration === -1 ? (
             ""
           ) : (
@@ -53,7 +68,7 @@ const Affliction = (props) => {
               doom_form="true"
             >
               <Check onClick={onPassDoom} fill="green" />
-              <X fill="maroon" />
+              <X onClick={onFailDoom} fill="maroon" />
             </Form>
           ) : (
             ""
@@ -63,7 +78,7 @@ const Affliction = (props) => {
               abyssal_visibility={props.monster.abyssal_mal ? "none" : "flex"}
             >
               <Check onClick={onPassAbyssal} fill="green" />
-              <X fill="maroon" />
+              <X onClick={onFailAbyssal} fill="maroon" />
             </Form>
           ) : (
             ""
