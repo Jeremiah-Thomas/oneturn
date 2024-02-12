@@ -1,41 +1,39 @@
 [
-    {
-        "name": "Blood Boil",
-        "max_duration": 4,
-        "cur_duration": 4,
-        "color": "orange",
-        "stacks": 1
-    },
-    {
-        "name": "Siphon Life",
-        "duration": -1,
-        "color": "orangered",
-        "stacks": 1
-    },
-    {
-        "name": "Doom",
-        "max_duration": 4,
-        "cur_duration": 4,
-        "color": "orange"
-    },
-    {
-        "name": "Abyssal Mal",
-        "max_duration": 10,
-        "cur_duration": 10,
-        "color": "orange",
-        "stacks": 1
-    },
-    {
-        "name": "Graveblade",
-        "max_duration": 3,
-        "cur_duration": 3,
-        "color": "black",
-        "stacks": 1
-    },
-    {
-        "name": "Leech Toxin",
-        "duration": -1,
-        "color": "orangered",
-        "stacks": 1
-    }
+  {
+    "name": "Blood Boil",
+    "max_duration": 4,
+    "cur_duration": 4,
+    "color": "orange",
+    "stacks": 1
+  },
+  {
+    "name": "Siphon Life",
+    "color": "orangered",
+    "stacks": 1
+  },
+  {
+    "name": "Doom",
+    "max_duration": 4,
+    "cur_duration": 4,
+    "color": "orange"
+  },
+  {
+    "name": "Abyssal Mal",
+    "max_duration": 10,
+    "cur_duration": 10,
+    "color": "orange",
+    "stacks": 1
+  },
+  {
+    "name": "Graveblade",
+    "max_duration": 3,
+    "cur_duration": 3,
+    "color": "black",
+    "stacks": 1
+  },
+  {
+    "name": "Leech Toxin",
+    "color": "orangered",
+    "stacks": 1
+  }
 ]
