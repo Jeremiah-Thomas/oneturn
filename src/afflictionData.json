@@ -15,13 +15,13 @@
     "name": "Doom",
     "max_duration": 4,
     "cur_duration": 4,
-    "color": "orange"
+    "color": "#E49B0F"
   },
   {
     "name": "Abyssal Mal",
     "max_duration": 10,
     "cur_duration": 10,
-    "color": "orange",
+    "color": "#E49B0F",
     "stacks": 1
   },
   {
