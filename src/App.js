@@ -24,7 +24,7 @@ const Form = styled.form`
     text-align: center;
     font-size: 2rem;
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     padding: 0;
     margin: 0;
     padding: 0.5rem 1rem 0.5rem 1rem;
@@ -41,12 +41,11 @@ const App = () => {
 
   const monsters = useSelector((state) => state.monsters).monsters;
 
-  const createMonster = async (e) => {
+  const createMonster = (e) => {
     e.preventDefault();
     dispatch(
       addMonster({
         monster_name: `Monster ${monsters ? monsters.length + 1 : 1}`,
-        afflictions: [],
       })
     );
   };

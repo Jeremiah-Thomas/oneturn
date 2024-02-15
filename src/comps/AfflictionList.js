@@ -7,29 +7,37 @@ const List = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-height: 10;
+  overflow-y: scroll;
 `;
 
 const AfflictionList = (props) => {
   return (
-    <List>
-      {[...props.monster.afflictions]
-        .sort((a, b) => {
-          return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
-        })
-        .map((affliction) => {
-          if (affliction) {
-            return (
-              <Affliction
-                key={affliction._id}
-                monster={props.monster}
-                affliction={[affliction]}
-              />
-            );
-          } else {
-            return "";
-          }
-        })}
-    </List>
+    <>
+      {props.monster.afflictions ? (
+        <List>
+          {[...props.monster.afflictions]
+            .sort((a, b) => {
+              return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+            })
+            .map((affliction) => {
+              if (affliction) {
+                return (
+                  <Affliction
+                    key={affliction._id}
+                    monster={props.monster}
+                    affliction={[affliction]}
+                  />
+                );
+              } else {
+                return "";
+              }
+            })}
+        </List>
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 

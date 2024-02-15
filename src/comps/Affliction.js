@@ -18,9 +18,9 @@ const Afflic = styled.div`
 
   .name {
     background-color: ${(props) => props.color};
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     margin: 0;
-    padding: 0.25rem;
+    padding: 0.35rem;
   }
 `;
 const Form = styled.form`

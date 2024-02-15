@@ -168,6 +168,27 @@ export const updateMonster = createAsyncThunk(
   }
 );
 
+export const addStack = createAsyncThunk("monsters/addStack", async (data) => {
+  const newAfflictions = [];
+  data.monster.afflictions.forEach((afflic) => {
+    if (afflic.name === data.affliction) {
+      console.log(afflic);
+      newAfflictions.push({ ...afflic, stacks: afflic.stacks + 1 });
+    } else {
+      newAfflictions.push(afflic);
+    }
+  });
+
+  try {
+    const res = await axios.patch(`/update/${data.monster._id}`, {
+      afflictions: newAfflictions,
+    });
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 export const monstersSlice = createSlice({
   name: "monsters",
   initialState: {
@@ -229,6 +250,14 @@ export const monstersSlice = createSlice({
         ];
       })
       .addCase(failAbyssal.fulfilled, (state, action) => {
+        state.monsters = [
+          action.payload,
+          ...state.monsters.filter((monster) => {
+            return monster._id !== action.payload._id;
+          }),
+        ];
+      })
+      .addCase(addStack.fulfilled, (state, action) => {
         state.monsters = [
           action.payload,
           ...state.monsters.filter((monster) => {

@@ -1,30 +1,33 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addAffliction, deleteMonster } from "../slices/monstersSlice";
+import {
+  addAffliction,
+  deleteMonster,
+  addStack,
+} from "../slices/monstersSlice";
 import { ReactComponent as Add } from "../add.svg";
 import { ReactComponent as Delete } from "../delete.svg";
 import { styled } from "styled-components";
 import AfflictionList from "./AfflictionList";
 
 const Mon = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-text-align: center;s
-width: 75%;
-height: 25%;
-border-radius: 0.5rem;
-background-color: #844eff;
-padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 30rem;
+  border-radius: 1rem;
+  background-color: #844eff;
+  padding: 1rem;
 
-button {
+  button {
     all: unset;
-    border-radius: 0.5rem;
-    background-color: #5C37B3;
+    border-radius: 1rem;
+    background-color: #5c37b3;
     padding: 0.25rem 0.35rem;
   }
-
 `;
 
 const Form = styled.form`
@@ -47,17 +50,25 @@ const Monster = (props) => {
   const [newAffliction, setNewAffliction] = useState("placeholder");
   const addNewAffliction = async (e) => {
     e.preventDefault();
-    dispatch(
-      addAffliction({
-        mon_id: props.monster._id,
-        new_affliction: [
-          ...props.monster.afflictions,
-          afflictionData.filter((affliction) => {
-            return affliction.name === newAffliction;
-          })[0],
-        ],
-      })
-    );
+    if (
+      props.monster.afflictions.filter((affliction) => {
+        return affliction.name === newAffliction;
+      }).length < 1
+    ) {
+      dispatch(
+        addAffliction({
+          mon_id: props.monster._id,
+          new_affliction: [
+            ...props.monster.afflictions,
+            afflictionData.filter((affliction) => {
+              return affliction.name === newAffliction;
+            })[0],
+          ],
+        })
+      );
+    } else {
+      dispatch(addStack({ monster: props.monster, affliction: newAffliction }));
+    }
     setNewAffliction("placeholder");
   };
 

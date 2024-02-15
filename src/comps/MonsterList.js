@@ -8,7 +8,7 @@ const List = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  max-width: 90%;
+  max-width: 80%;
   margin-inline: auto;
   padding-block: 3rem;
   overflow-y: scroll;
