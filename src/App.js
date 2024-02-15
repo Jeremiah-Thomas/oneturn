@@ -8,6 +8,7 @@ import {
   getMonsterData,
   deleteMonster,
 } from "./slices/monstersSlice";
+import { ReactComponent as Add } from "./add.svg";
 import MonsterList from "./comps/MonsterList";
 
 const Form = styled.form`
@@ -19,10 +20,15 @@ const Form = styled.form`
   padding-top: 3rem;
 
   button {
+    all: unset;
+    text-align: center;
     font-size: 2rem;
+    border: none;
+    border-radius: 0.5rem;
     padding: 0;
     margin: 0;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    background-color: #22202f;
   }
 `;
 
@@ -64,7 +70,9 @@ const App = () => {
       <Form>
         <button onClick={clearAll}>Clear All</button>
         <button onClick={advanceRound}>Advance Round</button>
-        <button onClick={createMonster}>+</button>
+        <button onClick={createMonster}>
+          <Add width="25" height="25" />
+        </button>
       </Form>
       <MonsterList monsters={monsters} />
     </div>

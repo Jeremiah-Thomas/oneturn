@@ -3,7 +3,7 @@
     "name": "Blood Boil",
     "max_duration": 4,
     "cur_duration": 4,
-    "color": "orange",
+    "color": "#E49B0F",
     "stacks": 1
   },
   {

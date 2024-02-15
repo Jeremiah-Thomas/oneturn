@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addAffliction, deleteMonster } from "../slices/monstersSlice";
+import { ReactComponent as Add } from "../add.svg";
+import { ReactComponent as Delete } from "../delete.svg";
 import { styled } from "styled-components";
 import AfflictionList from "./AfflictionList";
 
@@ -12,13 +14,30 @@ align-items: center;
 text-align: center;s
 width: 75%;
 height: 25%;
-border: solid black 1px;
+border-radius: 0.5rem;
+background-color: #844eff;
 padding: 1rem;
+
+button {
+    all: unset;
+    border-radius: 0.5rem;
+    background-color: #5C37B3;
+    padding: 0.25rem 0.35rem;
+  }
+
 `;
 
 const Form = styled.form`
   display: flex;
   gap: 0.25rem;
+
+  select {
+    all: unset;
+    border-radius: 0.5rem;
+    background-color: #5c37b3;
+    text-align: center;
+    padding: 0.25rem 0.25rem;
+  }
 `;
 
 const afflictionData = require("../afflictionData.json");
@@ -53,7 +72,9 @@ const Monster = (props) => {
 
   return (
     <Mon checkDoom={props.checkDoom}>
-      <button onClick={onDelete}>x</button>
+      <button onClick={onDelete}>
+        <Delete width="15" height="15" />
+      </button>
       <h2>{`Monster ${props.monName}`}</h2>
       <Form>
         <select value={newAffliction} onChange={onChange}>
@@ -72,7 +93,7 @@ const Monster = (props) => {
           onClick={addNewAffliction}
           disabled={newAffliction === "placeholder" ? true : false}
         >
-          +
+          <Add width="15" height="15" />
         </button>
       </Form>
       <AfflictionList monster={props.monster} />

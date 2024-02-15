@@ -17,9 +17,10 @@ const Afflic = styled.div`
   gap: 0.25rem;
 
   .name {
-    color: ${(props) => props.color};
+    background-color: ${(props) => props.color};
+    border-radius: 0.5rem;
     margin: 0;
-    padding: 0;
+    padding: 0.25rem;
   }
 `;
 const Form = styled.form`
@@ -67,8 +68,8 @@ const Affliction = (props) => {
               doom_visibility={props.monster.doom ? "none" : "flex"}
               doom_form="true"
             >
-              <Check onClick={onPassDoom} fill="green" />
-              <X onClick={onFailDoom} fill="maroon" />
+              <Check onClick={onPassDoom} fill="#1CAC78" />
+              <X onClick={onFailDoom} fill="#C60C30" />
             </Form>
           ) : (
             ""
@@ -77,8 +78,8 @@ const Affliction = (props) => {
             <Form
               abyssal_visibility={props.monster.abyssal_mal ? "none" : "flex"}
             >
-              <Check onClick={onPassAbyssal} fill="green" />
-              <X onClick={onFailAbyssal} fill="maroon" />
+              <Check onClick={onPassAbyssal} fill="#1CAC78" />
+              <X onClick={onFailAbyssal} fill="#C60C30" />
             </Form>
           ) : (
             ""
