@@ -57,7 +57,7 @@ const Affliction = (props) => {
       {affliction.name ? (
         <>
           <h4 className="name">{affliction.name}</h4>
-          {affliction.duration === -1 ? (
+          {!affliction.max_duration ? (
             ""
           ) : (
             <p>dur. {affliction.cur_duration}</p>
