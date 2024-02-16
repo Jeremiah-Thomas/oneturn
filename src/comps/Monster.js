@@ -6,7 +6,7 @@ import {
   addStack,
 } from "../slices/monstersSlice";
 import { ReactComponent as Add } from "../add.svg";
-import { ReactComponent as Delete } from "../delete.svg";
+import { ReactComponent as Trash } from "../trash.svg";
 import { styled } from "styled-components";
 import AfflictionList from "./AfflictionList";
 
@@ -22,11 +22,33 @@ const Mon = styled.div`
   background-color: #844eff;
   padding: 1rem;
 
+  section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    button {
+      all: unset;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 1rem;
+      background-color: #5c37b3;
+      padding: 0.25rem;
+      margin: 0;
+    }
+  }
+
   button {
     all: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 1rem;
     background-color: #5c37b3;
-    padding: 0.25rem 0.35rem;
+    padding: 0.25rem;
+    margin: 0;
   }
 `;
 
@@ -83,10 +105,12 @@ const Monster = (props) => {
 
   return (
     <Mon checkDoom={props.checkDoom}>
-      <button onClick={onDelete}>
-        <Delete width="15" height="15" />
-      </button>
-      <h2>{`Monster ${props.monName}`}</h2>
+      <section>
+        <h2>{`Monster ${props.monName}`}</h2>
+        <button onClick={onDelete}>
+          <Trash width="28" height="28" />
+        </button>
+      </section>
       <Form>
         <select value={newAffliction} onChange={onChange}>
           <option value="placeholder" disabled hidden>

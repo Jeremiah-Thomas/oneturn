@@ -9,11 +9,12 @@ import {
   deleteMonster,
 } from "./slices/monstersSlice";
 import { ReactComponent as Add } from "./add.svg";
+import { ReactComponent as Trash } from "./trash.svg";
+import { ReactComponent as Advance } from "./arrow-advance.svg";
 import MonsterList from "./comps/MonsterList";
 
 const Form = styled.form`
   display: flex;
-  flex-direction: column;
   gap: 1rem;
   justify-content: center;
   align-items: center;
@@ -21,6 +22,9 @@ const Form = styled.form`
 
   button {
     all: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     font-size: 2rem;
     border: none;
@@ -29,6 +33,26 @@ const Form = styled.form`
     margin: 0;
     padding: 0.5rem 1rem 0.5rem 1rem;
     background-color: #22202f;
+  }
+`;
+
+const Mana = styled.div`
+  background: linear-gradient(
+    90deg,
+    #4e99ff 50%,
+    #4e99ff 50%,
+    #c9c8cd 50%,
+    #c9c8cd 100%
+  );
+  background-clip: text;
+  width: fit-content;
+  margin-inline: auto;
+
+  h1 {
+    margin-block: 0.5rem;
+    font-size: 5rem;
+    width: fit-content;
+    color: transparent;
   }
 `;
 
@@ -67,12 +91,19 @@ const App = () => {
   return (
     <div className="App">
       <Form>
-        <button onClick={clearAll}>Clear All</button>
-        <button onClick={advanceRound}>Advance Round</button>
+        <button onClick={clearAll}>
+          <Trash width="50" height="50" />
+        </button>
+        <button onClick={advanceRound}>
+          <Advance width="70" height="50" />
+        </button>
         <button onClick={createMonster}>
-          <Add width="25" height="25" />
+          <Add width="50" height="50" />
         </button>
       </Form>
+      <Mana>
+        <h1>400</h1>
+      </Mana>
       <MonsterList monsters={monsters} />
     </div>
   );

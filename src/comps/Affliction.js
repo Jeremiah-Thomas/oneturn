@@ -52,7 +52,6 @@ const Afflic = styled.div`
     align-items: center;
     background-color: #5c37b3;
     border-right: solid #4a2c8f 1px;
-    border-left: solid #4a2c8f 1px;
     padding-inline: 0.5rem;
     height: 100%;
     flex: 1;
@@ -84,7 +83,6 @@ const Form = styled.form`
   justify-content: center;
   align-items: center;
   flex: 1;
-  // border-radius: 0 1rem 1rem 0;
   height: 100%;
   background-color: #5c37b3;
 

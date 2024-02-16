@@ -10,7 +10,7 @@ const List = styled.div`
   gap: 1rem;
   max-width: 80%;
   margin-inline: auto;
-  padding-block: 3rem;
+  padding-block: 1rem;
   overflow-y: scroll;
 `;
 
