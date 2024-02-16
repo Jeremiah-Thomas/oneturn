@@ -17,7 +17,7 @@ const Mon = styled.div`
   align-items: center;
   text-align: center;
   width: 100%;
-  height: 30rem;
+  height: 32rem;
   border-radius: 1rem;
   background-color: #844eff;
   padding: 1rem;

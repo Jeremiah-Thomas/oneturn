@@ -6,9 +6,11 @@ const List = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 0.5rem;
   align-items: center;
-  max-height: 10;
-  overflow-y: scroll;
+  max-height: 13;
+  margin-top: 1rem;
+  padding-top: 1rem;
 `;
 
 const AfflictionList = (props) => {
@@ -21,7 +23,7 @@ const AfflictionList = (props) => {
               return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
             })
             .map((affliction) => {
-              if (affliction) {
+              if (affliction.name) {
                 return (
                   <Affliction
                     key={affliction._id}

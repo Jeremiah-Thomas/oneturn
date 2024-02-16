@@ -1,6 +1,6 @@
 import React from "react";
-import { ReactComponent as Check } from "../circle-check.svg";
-import { ReactComponent as X } from "../circle-xmark.svg";
+import { ReactComponent as Check } from "../check.svg";
+import { ReactComponent as X } from "../delete.svg";
 import { useDispatch } from "react-redux";
 import {
   passDoom,
@@ -12,20 +12,100 @@ import { styled } from "styled-components";
 
 const Afflic = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: stretch;
   align-items: center;
-  gap: 0.25rem;
+  // gap: 1rem;
+  border-radius: 2rem;
+  // background-color: #5c37b3;
+  // border-top: solid #4a2c8f 1px;
+
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: max-content;
+
+  & > :last-child {
+    border-radius: 0 1rem 1rem 0;
+  }
 
   .name {
     background-color: ${(props) => props.color};
-    border-radius: 1rem;
-    margin: 0;
-    padding: 0.35rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem 0 0 1rem;
+    padding-inline: 0.5rem;
+    padding-block: 0rem;
+    height: 100%;
+
+    h4 {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+  }
+
+  .duration {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #5c37b3;
+    border-right: solid #4a2c8f 1px;
+    border-left: solid #4a2c8f 1px;
+    padding-inline: 0.5rem;
+    height: 100%;
+    flex: 1;
+    p {
+      padding: 0;
+      margin: 0;
+      border-bottom: solid #4a2c8f 1px;
+    }
+  }
+
+  .stacks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 0.5rem;
+    font-size: 1.35rem;
+    background-color: #5c37b3;
+    height: 100%;
+    border-right: solid #4a2c8f 1px;
+    flex: 1;
+    p {
+      padding: 0;
+      margin: 0;
+    }
   }
 `;
 const Form = styled.form`
-  display: ${(props) =>
-    props.doom_form ? props.doom_visibility : props.abyssal_visibility};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  // border-radius: 0 1rem 1rem 0;
+  height: 100%;
+  background-color: #5c37b3;
+
+  .check {
+    background-color: #1cac78;
+  }
+
+  .fail {
+    background-color: #c60c30;
+    border-radius: inherit;
+  }
+
+  span {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
 `;
 
 const Affliction = (props) => {
@@ -56,30 +136,43 @@ const Affliction = (props) => {
     <Afflic color={affliction.color}>
       {affliction.name ? (
         <>
-          <h4 className="name">{affliction.name}</h4>
+          <p className="name">
+            <h4>{affliction.name}</h4>
+          </p>
           {!affliction.max_duration ? (
             ""
           ) : (
-            <p>dur. {affliction.cur_duration}</p>
+            <section className="duration">
+              <p>Dur</p> {affliction.cur_duration}
+            </section>
           )}
-          {affliction.name === "Doom" ? "" : <p>x{affliction.stacks}</p>}
           {affliction.name === "Doom" ? (
-            <Form
-              doom_visibility={props.monster.doom ? "none" : "flex"}
-              doom_form="true"
-            >
-              <Check onClick={onPassDoom} fill="#1CAC78" />
-              <X onClick={onFailDoom} fill="#C60C30" />
+            ""
+          ) : (
+            <section className="stacks">
+              <p>x{affliction.stacks}</p>
+            </section>
+          )}
+          {affliction.name === "Doom" && !props.monster.doom ? (
+            <Form>
+              <span className="check">
+                <Check width="30" height="30" onClick={onPassDoom} />
+              </span>
+              <span className="fail">
+                <X width="30" height="30" onClick={onFailDoom} />
+              </span>
             </Form>
           ) : (
             ""
           )}
-          {affliction.name === "Abyssal Mal" ? (
-            <Form
-              abyssal_visibility={props.monster.abyssal_mal ? "none" : "flex"}
-            >
-              <Check onClick={onPassAbyssal} fill="#1CAC78" />
-              <X onClick={onFailAbyssal} fill="#C60C30" />
+          {affliction.name === "Abyssal Mal" && !props.monster.abyssal_mal ? (
+            <Form>
+              <span className="check">
+                <Check width="30" height="30" onClick={onPassAbyssal} />
+              </span>
+              <span className="fail">
+                <X width="30" height="30" onClick={onFailAbyssal} />
+              </span>
             </Form>
           ) : (
             ""
