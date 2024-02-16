@@ -13,7 +13,7 @@ import AfflictionList from "./AfflictionList";
 const Mon = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
   width: 100%;
