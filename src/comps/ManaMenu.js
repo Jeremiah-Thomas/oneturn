@@ -16,7 +16,6 @@ padding: 0.5rem;
 height: fit-content;
 left: 25%;
 padding-inline: 0.5rem;
-opacity: .95;
 `
 
 const Form = styled.form`
