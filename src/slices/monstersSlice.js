@@ -193,6 +193,7 @@ export const monstersSlice = createSlice({
   name: "monsters",
   initialState: {
     monsters: [],
+    mana: { max: 400, current: 400 },
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -268,5 +269,4 @@ export const monstersSlice = createSlice({
   },
 });
 
-export const { nextRound } = monstersSlice.actions;
 export default monstersSlice.reducer;

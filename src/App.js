@@ -8,6 +8,7 @@ import {
   getMonsterData,
   deleteMonster,
 } from "./slices/monstersSlice";
+import { addMana } from "./slices/manaSlice";
 import { ReactComponent as Add } from "./add.svg";
 import { ReactComponent as Trash } from "./trash.svg";
 import { ReactComponent as Advance } from "./arrow-advance.svg";
@@ -39,9 +40,9 @@ const Form = styled.form`
 const Mana = styled.div`
   background: linear-gradient(
     90deg,
-    #4e99ff 50%,
-    #4e99ff 50%,
-    #c9c8cd 50%,
+    #4e99ff ${(props) => props.percent * 100}%,
+    #4e99ff ${(props) => props.percent * 100}%,
+    #c9c8cd ${(props) => props.percent * 100}%,
     #c9c8cd 100%
   );
   background-clip: text;
@@ -64,6 +65,7 @@ const App = () => {
   }, [dispatch]);
 
   const monsters = useSelector((state) => state.monsters).monsters;
+  const mana = useSelector((state) => state.mana);
 
   const createMonster = (e) => {
     e.preventDefault();
@@ -79,6 +81,7 @@ const App = () => {
     monsters.forEach((monster) => {
       dispatch(updateMonster(monster));
     });
+    dispatch(addMana(mana.regen));
   };
 
   const clearAll = (e) => {
@@ -101,8 +104,8 @@ const App = () => {
           <Add width="50" height="50" />
         </button>
       </Form>
-      <Mana>
-        <h1>400</h1>
+      <Mana percent={mana.current / mana.max}>
+        <h1>{mana.current}</h1>
       </Mana>
       <MonsterList monsters={monsters} />
     </div>

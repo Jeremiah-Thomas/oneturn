@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addAffliction,
   deleteMonster,
   addStack,
 } from "../slices/monstersSlice";
+import { reduceMana } from "../slices/manaSlice";
 import { ReactComponent as Add } from "../add.svg";
 import { ReactComponent as Trash } from "../trash.svg";
 import { styled } from "styled-components";
@@ -70,26 +71,36 @@ const afflictionData = require("../afflictionData.json");
 const Monster = (props) => {
   const dispatch = useDispatch();
   const [newAffliction, setNewAffliction] = useState("placeholder");
+
+  const mana = useSelector((state) => state.mana);
+
   const addNewAffliction = async (e) => {
     e.preventDefault();
-    if (
-      props.monster.afflictions.filter((affliction) => {
-        return affliction.name === newAffliction;
-      }).length < 1
-    ) {
-      dispatch(
-        addAffliction({
-          mon_id: props.monster._id,
-          new_affliction: [
-            ...props.monster.afflictions,
-            afflictionData.filter((affliction) => {
-              return affliction.name === newAffliction;
-            })[0],
-          ],
-        })
-      );
+
+    const afflictionToAdd = afflictionData.filter((affliction) => {
+      return affliction.name === newAffliction;
+    })[0];
+
+    if (mana.current - afflictionToAdd.mana_cost >= 0) {
+      dispatch(reduceMana(afflictionToAdd.mana_cost));
+      if (
+        props.monster.afflictions.filter((affliction) => {
+          return affliction.name === newAffliction;
+        }).length < 1
+      ) {
+        dispatch(
+          addAffliction({
+            mon_id: props.monster._id,
+            new_affliction: [...props.monster.afflictions, afflictionToAdd],
+          })
+        );
+      } else {
+        dispatch(
+          addStack({ monster: props.monster, affliction: newAffliction })
+        );
+      }
     } else {
-      dispatch(addStack({ monster: props.monster, affliction: newAffliction }));
+      alert("Not enough mana");
     }
     setNewAffliction("placeholder");
   };

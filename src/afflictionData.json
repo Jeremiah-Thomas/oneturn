@@ -4,36 +4,42 @@
     "max_duration": 4,
     "cur_duration": 4,
     "color": "#E49B0F",
-    "stacks": 1
+    "stacks": 1,
+    "mana_cost": 50
   },
   {
     "name": "Siphon Life",
     "color": "orangered",
-    "stacks": 1
+    "stacks": 1,
+    "mana_cost": 50
   },
   {
     "name": "Doom",
     "max_duration": 4,
     "cur_duration": 4,
-    "color": "#E49B0F"
+    "color": "#E49B0F",
+    "mana_cost": 50
   },
   {
     "name": "Abyssal Mal",
     "max_duration": 10,
     "cur_duration": 10,
     "color": "#E49B0F",
-    "stacks": 1
+    "stacks": 1,
+    "mana_cost": 50
   },
   {
     "name": "Graveblade",
     "max_duration": 3,
     "cur_duration": 3,
     "color": "black",
-    "stacks": 1
+    "stacks": 1,
+    "mana_cost": 50
   },
   {
     "name": "Leech Toxin",
     "color": "orangered",
-    "stacks": 1
+    "stacks": 1,
+    "mana_cost": 50
   }
 ]
