@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -9,10 +9,13 @@ import {
   deleteMonster,
 } from "./slices/monstersSlice";
 import { addMana } from "./slices/manaSlice";
+import { addHealth } from "./slices/healthSlice";
 import { ReactComponent as Add } from "./add.svg";
 import { ReactComponent as Trash } from "./trash.svg";
 import { ReactComponent as Advance } from "./arrow-advance.svg";
 import MonsterList from "./comps/MonsterList";
+import ManaMenu from "./comps/ManaMenu";
+import HealthMenu from "./comps/HealthMenu";
 
 const Form = styled.form`
   display: flex;
@@ -51,13 +54,45 @@ const Mana = styled.div`
 
   h1 {
     margin-block: 0.5rem;
+    padding: 0;
     font-size: 5rem;
     width: fit-content;
     color: transparent;
   }
 `;
 
+const Label = styled.label`
+input[type='checkbox'] {
+  display: none;
+}
+
+`
+
+const Health = styled.div`
+  background: linear-gradient(
+    90deg,
+    #c60c30 ${(props) => props.percent * 100}%,
+    #c60c30 ${(props) => props.percent * 100}%,
+    #c9c8cd ${(props) => props.percent * 100}%,
+    #c9c8cd 100%
+  );
+  background-clip: text;
+  width: fit-content;
+  margin-inline: auto;
+
+  h1 {
+    margin-block: 0.5rem;
+    padding: 0;
+    font-size: 5rem;
+    width: fit-content;
+    color: transparent;
+  }
+`;
+
+
 const App = () => {
+  const [manaChecked, setManaChecked] = useState(false)
+  const [healthChecked, setHealthChecked] = useState(false)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -66,6 +101,7 @@ const App = () => {
 
   const monsters = useSelector((state) => state.monsters).monsters;
   const mana = useSelector((state) => state.mana);
+  const health = useSelector(state => state.health)
 
   const createMonster = (e) => {
     e.preventDefault();
@@ -81,7 +117,18 @@ const App = () => {
     monsters.forEach((monster) => {
       dispatch(updateMonster(monster));
     });
-    dispatch(addMana(mana.regen));
+    if(mana.current + mana.regen > mana.max){
+      dispatch(addMana(mana.max - mana.current))
+    }else{
+      dispatch(addMana(mana.regen));
+    }
+    if(health.current > 0){
+    if(health.current + health.regen > health.max) {
+      dispatch(addHealth(health.max - health.current))
+    }else{
+      dispatch(addHealth(health.regen))
+    }}
+    
   };
 
   const clearAll = (e) => {
@@ -90,6 +137,14 @@ const App = () => {
       dispatch(deleteMonster(monster._id));
     });
   };
+
+  const onCheckHealth = (e) => {
+    setHealthChecked(!healthChecked)
+  }
+
+  const onCheckMana = (e) => {
+    setManaChecked(!manaChecked)
+  }
 
   return (
     <div className="App">
@@ -104,9 +159,20 @@ const App = () => {
           <Add width="50" height="50" />
         </button>
       </Form>
+      <Label>
+      <Health percent={health.current / health.max}>
+        <h1>{health.current.toString().padStart(3, '0')}</h1>
+      </Health>
+      <input type="checkbox" onChange={onCheckHealth}  />
+      </Label>
+      <Label>
       <Mana percent={mana.current / mana.max}>
-        <h1>{mana.current}</h1>
+        <h1>{mana.current.toString().padStart(3, '0')}</h1>
       </Mana>
+      <input type="checkbox" onChange={onCheckMana}  />
+      </Label>
+      <HealthMenu visibility={healthChecked} />
+      <ManaMenu visibility={manaChecked}/>
       <MonsterList monsters={monsters} />
     </div>
   );

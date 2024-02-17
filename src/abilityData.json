@@ -1,0 +1,63 @@
+[
+    {
+        "name": "Ephemeral Shroud",
+        "mana_cost": 5,
+        "color": "#E49B0F"
+    },
+    {
+        "name": "Mark of Doom",
+        "mana_cost": 10,
+        "color": "#E49B0F"
+    },
+    {
+        "name": "Eclipse of Bones",
+        "mana_cost": 40,
+        "color": "black"
+    },
+    {
+        "name": "Ruptured Earth",
+        "mana_cost": 35,
+        "color": "black"
+    },
+    {
+        "name": "Lance of Bone",
+        "mana_cost": 40,
+        "color": "black"
+    },
+    {
+        "name": "Sanguine Eruption",
+        "mana_cost": 30,
+        "color": "orangered"
+    },
+    {
+        "name": "Hemo Surge",
+        "mana_cost": 25,
+        "color": "orangered"
+    },
+    {
+        "name": "Eclipse of Oblivion",
+        "mana_cost": 50,
+        "color": "#17B169"
+    },
+    {
+        "name": "Graveyard Eruption",
+        "mana_cost": 20,
+        "color": "#17B169"
+    },
+    {
+        "name": "Spectral Shield",
+        "mana_cost": 25,
+        "color": "#17B169"
+    },
+    {
+        "name": "Soul Swap",
+        "mana_cost": 40,
+        "color": "#17B169"
+    },
+    {
+        "name": "Wail of the Banshee",
+        "mana_cost": 25,
+        "color": "#17B169"
+    }
+    
+]

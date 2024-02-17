@@ -55,6 +55,10 @@ const Afflic = styled.div`
     padding-inline: 0.5rem;
     height: 100%;
     flex: 1;
+    .num {
+        border: none;
+        margin-top: -1rem;
+    }
     p {
       padding: 0;
       margin: 0;
@@ -141,10 +145,10 @@ const Affliction = (props) => {
             ""
           ) : (
             <section className="duration">
-              <p>Dur</p> {affliction.cur_duration}
+              <p>Dur</p> <p className="num">{affliction.cur_duration}</p>
             </section>
           )}
-          {affliction.name === "Doom" ? (
+          {affliction.name === "Doom" || affliction.name === "Abyssal Mal" ? (
             ""
           ) : (
             <section className="stacks">

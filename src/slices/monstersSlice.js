@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URI;
 
+
 export const getMonsterData = createAsyncThunk("monsters/get", async () => {
   try {
     const res = await axios.get(`/get`);

@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 export const manaSlice = createSlice({
   name: "mana",
   initialState: {
-    max: 400,
-    current: 400,
-    regen: 25,
+    max: 448,
+    current: 448,
+    regen: 22,
   },
   reducers: {
     reduceMana(state, action) {
@@ -14,8 +14,17 @@ export const manaSlice = createSlice({
     addMana(state, action) {
       state.current += action.payload;
     },
+    changeMax(state, action) {
+      state.max = action.payload
+    },
+    changeCurrent(state, action) {
+      state.current = action.payload
+    },
+    changeRegen(state, action){
+      state.regen = action.payload
+    }
   },
 });
 
-export const { reduceMana, addMana } = manaSlice.actions;
+export const { reduceMana, addMana, changeCurrent, changeMax, changeRegen } = manaSlice.actions;
 export default manaSlice.reducer;
