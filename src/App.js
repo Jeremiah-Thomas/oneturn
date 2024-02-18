@@ -17,6 +17,16 @@ import MonsterList from "./comps/MonsterList";
 import ManaMenu from "./comps/ManaMenu";
 import HealthMenu from "./comps/HealthMenu";
 
+const AppDiv = styled.div`
+.mana {
+  position: relative;
+}
+
+.health {
+  position: relative;
+}
+`
+
 const Form = styled.form`
   display: flex;
   gap: 1rem;
@@ -128,7 +138,7 @@ const App = () => {
     }else{
       dispatch(addHealth(health.regen))
     }}
-    
+
   };
 
   const clearAll = (e) => {
@@ -147,7 +157,7 @@ const App = () => {
   }
 
   return (
-    <div className="App">
+    <AppDiv className="App">
       <Form>
         <button onClick={clearAll}>
           <Trash width="50" height="50" />
@@ -159,22 +169,27 @@ const App = () => {
           <Add width="50" height="50" />
         </button>
       </Form>
+      <div className="health">
       <Label>
       <Health percent={health.current / health.max}>
         <h1>{health.current.toString().padStart(3, '0')}</h1>
       </Health>
       <input type="checkbox" onChange={onCheckHealth}  />
       </Label>
+      <HealthMenu visibility={healthChecked} />
+      </div>
+      <div className="mana">
       <Label>
       <Mana percent={mana.current / mana.max}>
         <h1>{mana.current.toString().padStart(3, '0')}</h1>
       </Mana>
       <input type="checkbox" onChange={onCheckMana}  />
       </Label>
-      <HealthMenu visibility={healthChecked} />
       <ManaMenu visibility={manaChecked}/>
+      </div>
+      
       <MonsterList monsters={monsters} />
-    </div>
+    </AppDiv>
   );
 };
 

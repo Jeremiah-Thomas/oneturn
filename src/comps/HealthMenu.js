@@ -14,10 +14,11 @@ border-radius: 1rem;
 background-color: #22202f;
 padding: 0.5rem;
 height: fit-content;
-top: 26%;
-left: 25%;
+top: 100%;
+left: 50%;
+transform: translateX(-50%);
 padding-inline: 0.5rem;
-
+z-index: 100;
 
 `
 

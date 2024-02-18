@@ -14,8 +14,10 @@ border-radius: 1rem;
 background-color: #22202f;
 padding: 0.5rem;
 height: fit-content;
-left: 25%;
+left: 50%;
+transform: translateX(-50%);
 padding-inline: 0.5rem;
+z-index: 100;
 `
 
 const Form = styled.form`
