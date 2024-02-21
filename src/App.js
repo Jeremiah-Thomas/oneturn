@@ -71,12 +71,6 @@ const Mana = styled.div`
   }
 `;
 
-const Label = styled.label`
-  input[type="checkbox"] {
-    display: none;
-  }
-`;
-
 const Health = styled.div`
   background: linear-gradient(
     90deg,
