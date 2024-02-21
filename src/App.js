@@ -99,8 +99,8 @@ const Health = styled.div`
 `;
 
 const App = () => {
-  const [manaChecked, setManaChecked] = useState(false);
-  const [healthChecked, setHealthChecked] = useState(false);
+  const [showManaMenu, setShowManaMenu] = useState(false);
+  const [showHealthMenu, setShowHealthMenu] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -146,12 +146,22 @@ const App = () => {
     });
   };
 
-  const onCheckHealth = (e) => {
-    setHealthChecked(!healthChecked);
+  const showHealth = (e) => {
+    setShowHealthMenu(true);
+    // setShowHealthMenu(!showHealthMenu);
   };
 
-  const onCheckMana = (e) => {
-    setManaChecked(!manaChecked);
+  const closeHealth = () => {
+    setShowHealthMenu(false);
+  };
+
+  const showMana = (e) => {
+    setShowManaMenu(true);
+    // setShowManaMenu(!showManaMenu);
+  };
+
+  const closeMana = () => {
+    setShowManaMenu(false);
   };
 
   return (
@@ -168,30 +178,35 @@ const App = () => {
         </button>
       </Form>
       <div className="health">
-        <Label>
-          <Health percent={health.current / health.max}>
-            <h1>{health.current.toString().padStart(3, "0")}</h1>
-          </Health>
-          <input type="checkbox" onChange={onCheckHealth} />
-        </Label>
-        {healthChecked ? (
+        <Health
+          percent={health.current / health.max}
+          onClick={showHealthMenu ? closeHealth : showHealth}
+        >
+          <h1>{health.current.toString().padStart(3, "0")}</h1>
+        </Health>
+        {/* <input type="checkbox" onChange={onCheckHealth} /> */}
+        {showHealthMenu ? (
           <HealthMenu
-            setHealthChecked={setHealthChecked}
-            healthChecked={healthChecked}
+            setShowHealthMenu={setShowHealthMenu}
+            showHealthMenu={showHealthMenu}
           />
         ) : (
           ""
         )}
       </div>
       <div className="mana">
-        <Label>
-          <Mana percent={mana.current / mana.max}>
-            <h1>{mana.current.toString().padStart(3, "0")}</h1>
-          </Mana>
-          <input type="checkbox" onChange={onCheckMana} />
-        </Label>
-        {manaChecked ? (
-          <ManaMenu setManaChecked={setManaChecked} manaChecked={manaChecked} />
+        <Mana
+          percent={mana.current / mana.max}
+          onClick={showManaMenu ? closeMana : showMana}
+        >
+          <h1>{mana.current.toString().padStart(3, "0")}</h1>
+        </Mana>
+        {/* <input type="checkbox" onChange={onCheckMana} /> */}
+        {showManaMenu ? (
+          <ManaMenu
+            setShowManaMenu={setShowManaMenu}
+            showManaMenu={showManaMenu}
+          />
         ) : (
           ""
         )}

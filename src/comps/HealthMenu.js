@@ -99,11 +99,11 @@ const HealthMenu = (props) => {
 
   const checkClickOutside = (e) => {
     if (
-      props.healthChecked &&
+      props.showHealthMenu &&
       healthMenuRef.current &&
       !healthMenuRef.current.contains(e.target)
     ) {
-      props.setHealthChecked(false);
+      props.setShowHealthMenu(false);
     }
   };
 
@@ -112,7 +112,7 @@ const HealthMenu = (props) => {
 
     return () => document.removeEventListener("mousedown", checkClickOutside);
     // eslint-disable-next-line
-  }, [props.healthChecked]);
+  }, [props.showHealthMenu]);
 
   const onChange = (e) => {
     if (e.target.name === "max") {

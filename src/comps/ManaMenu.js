@@ -78,11 +78,11 @@ const ManaMenu = (props) => {
 
   const checkClickOutside = (e) => {
     if (
-      props.manaChecked &&
+      props.showManaMenu &&
       manaMenuRef.current &&
       !manaMenuRef.current.contains(e.target)
     ) {
-      props.setManaChecked(false);
+      props.setShowManaMenu(false);
     }
   };
 
@@ -91,7 +91,7 @@ const ManaMenu = (props) => {
 
     return () => document.removeEventListener("mousedown", checkClickOutside);
     // eslint-disable-next-line
-  }, [props.manaChecked]);
+  }, [props.showManaMenu]);
 
   const onChange = (e) => {
     if (e.target.name === "max") {
