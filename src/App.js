@@ -18,14 +18,14 @@ import ManaMenu from "./comps/ManaMenu";
 import HealthMenu from "./comps/HealthMenu";
 
 const AppDiv = styled.div`
-.mana {
-  position: relative;
-}
+  .mana {
+    position: relative;
+  }
 
-.health {
-  position: relative;
-}
-`
+  .health {
+    position: relative;
+  }
+`;
 
 const Form = styled.form`
   display: flex;
@@ -72,11 +72,10 @@ const Mana = styled.div`
 `;
 
 const Label = styled.label`
-input[type='checkbox'] {
-  display: none;
-}
-
-`
+  input[type="checkbox"] {
+    display: none;
+  }
+`;
 
 const Health = styled.div`
   background: linear-gradient(
@@ -99,10 +98,9 @@ const Health = styled.div`
   }
 `;
 
-
 const App = () => {
-  const [manaChecked, setManaChecked] = useState(false)
-  const [healthChecked, setHealthChecked] = useState(false)
+  const [manaChecked, setManaChecked] = useState(false);
+  const [healthChecked, setHealthChecked] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -111,7 +109,7 @@ const App = () => {
 
   const monsters = useSelector((state) => state.monsters).monsters;
   const mana = useSelector((state) => state.mana);
-  const health = useSelector(state => state.health)
+  const health = useSelector((state) => state.health);
 
   const createMonster = (e) => {
     e.preventDefault();
@@ -127,18 +125,18 @@ const App = () => {
     monsters.forEach((monster) => {
       dispatch(updateMonster(monster));
     });
-    if(mana.current + mana.regen > mana.max){
-      dispatch(addMana(mana.max - mana.current))
-    }else{
+    if (mana.current + mana.regen > mana.max) {
+      dispatch(addMana(mana.max - mana.current));
+    } else {
       dispatch(addMana(mana.regen));
     }
-    if(health.current > 0){
-    if(health.current + health.regen > health.max) {
-      dispatch(addHealth(health.max - health.current))
-    }else{
-      dispatch(addHealth(health.regen))
-    }}
-
+    if (health.current > 0) {
+      if (health.current + health.regen > health.max) {
+        dispatch(addHealth(health.max - health.current));
+      } else {
+        dispatch(addHealth(health.regen));
+      }
+    }
   };
 
   const clearAll = (e) => {
@@ -149,12 +147,12 @@ const App = () => {
   };
 
   const onCheckHealth = (e) => {
-    setHealthChecked(!healthChecked)
-  }
+    setHealthChecked(!healthChecked);
+  };
 
   const onCheckMana = (e) => {
-    setManaChecked(!manaChecked)
-  }
+    setManaChecked(!manaChecked);
+  };
 
   return (
     <AppDiv className="App">
@@ -170,24 +168,35 @@ const App = () => {
         </button>
       </Form>
       <div className="health">
-      <Label>
-      <Health percent={health.current / health.max}>
-        <h1>{health.current.toString().padStart(3, '0')}</h1>
-      </Health>
-      <input type="checkbox" onChange={onCheckHealth}  />
-      </Label>
-      <HealthMenu visibility={healthChecked} />
+        <Label>
+          <Health percent={health.current / health.max}>
+            <h1>{health.current.toString().padStart(3, "0")}</h1>
+          </Health>
+          <input type="checkbox" onChange={onCheckHealth} />
+        </Label>
+        {healthChecked ? (
+          <HealthMenu
+            setHealthChecked={setHealthChecked}
+            healthChecked={healthChecked}
+          />
+        ) : (
+          ""
+        )}
       </div>
       <div className="mana">
-      <Label>
-      <Mana percent={mana.current / mana.max}>
-        <h1>{mana.current.toString().padStart(3, '0')}</h1>
-      </Mana>
-      <input type="checkbox" onChange={onCheckMana}  />
-      </Label>
-      <ManaMenu visibility={manaChecked}/>
+        <Label>
+          <Mana percent={mana.current / mana.max}>
+            <h1>{mana.current.toString().padStart(3, "0")}</h1>
+          </Mana>
+          <input type="checkbox" onChange={onCheckMana} />
+        </Label>
+        {manaChecked ? (
+          <ManaMenu setManaChecked={setManaChecked} manaChecked={manaChecked} />
+        ) : (
+          ""
+        )}
       </div>
-      
+
       <MonsterList monsters={monsters} />
     </AppDiv>
   );
