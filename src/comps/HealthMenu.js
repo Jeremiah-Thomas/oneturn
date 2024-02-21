@@ -111,6 +111,7 @@ const HealthMenu = (props) => {
     document.addEventListener("mousedown", checkClickOutside);
 
     return () => document.removeEventListener("mousedown", checkClickOutside);
+    // eslint-disable-next-line
   }, [props.healthChecked]);
 
   const onChange = (e) => {

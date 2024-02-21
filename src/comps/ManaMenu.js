@@ -90,6 +90,7 @@ const ManaMenu = (props) => {
     document.addEventListener("mousedown", checkClickOutside);
 
     return () => document.removeEventListener("mousedown", checkClickOutside);
+    // eslint-disable-next-line
   }, [props.manaChecked]);
 
   const onChange = (e) => {
