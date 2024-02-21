@@ -93,7 +93,7 @@ const ChangeForm = styled.form`
 
 const HealthMenu = (props) => {
   const healthMenuRef = useRef();
-  const [healthToChange, setHealthToChange] = useState();
+  const [healthToChange, setHealthToChange] = useState("");
   const health = useSelector((state) => state.health);
   const dispatch = useDispatch();
 
@@ -135,6 +135,7 @@ const HealthMenu = (props) => {
     } else {
       dispatch(addHealth(health.max - health.current));
     }
+    setHealthToChange("");
   };
 
   const healthDown = (e) => {
@@ -143,6 +144,7 @@ const HealthMenu = (props) => {
     } else {
       dispatch(changeCurrent(0));
     }
+    setHealthToChange("");
   };
 
   return (
