@@ -9,19 +9,19 @@ export const manaSlice = createSlice({
   },
   reducers: {
     reduceMana(state, action) {
-      state.current -= action.payload;
+      state.current -= parseInt(action.payload)
     },
     addMana(state, action) {
-      state.current += action.payload;
+      state.current += parseInt(action.payload)
     },
     changeMax(state, action) {
-      state.max = action.payload
+      state.max = parseInt(action.payload)
     },
     changeCurrent(state, action) {
-      state.current = action.payload
+      state.current = parseInt(action.payload)
     },
     changeRegen(state, action){
-      state.regen = action.payload
+      state.regen = parseInt(action.payload)
     }
   },
 });
