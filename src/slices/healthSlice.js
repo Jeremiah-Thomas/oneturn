@@ -12,7 +12,7 @@ export const healthSlice = createSlice({
             state.current -= action.payload
         },
         addHealth(state, action) {
-            state.current += action.payload
+            state.current += parseInt(action.payload)
         },
         changeMax(state, action){
             state.max = action.payload
