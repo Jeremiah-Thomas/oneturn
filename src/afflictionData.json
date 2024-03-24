@@ -14,6 +14,12 @@
     "mana_cost": 20
   },
   {
+    "name": "Sanguine Eruption",
+    "color": "orangered",
+    "mana_cost": 0,
+    "stacks": 1
+  },
+  {
     "name": "Doom",
     "max_duration": 4,
     "cur_duration": 4,
