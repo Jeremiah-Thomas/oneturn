@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 export const healthSlice = createSlice({
     name: "health",
     initialState: {
-        max: 82,
-        current: 82,
-        regen: 25
+        max: 135,
+        current: 135,
+        regen: 56
     },
     reducers:{
         reduceHealth(state, action) {
